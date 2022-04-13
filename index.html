@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    let playerCount = 0;
+    let computerCount = 0;
+    game();
+    function game() {
+      let result;
+      let playerSelection;
+      while ((playerCount + computerCount) < 5) {
+        playerSelection = prompt("Choose among rock, paper or scissors: ");
+        playerSelection = capitalize(playerSelection);
+        if (playerSelection == "Rock" || playerSelection == "Paper" || playerSelection == "Scissors") {
+          computerSelection = computerPlay();
+          result = playRound(playerSelection, computerSelection);
+          console.log(result);
+          if (result.slice(0, 2) == "Yo") {
+            playerCount += 1;
+          } else if (result.slice(0, 2) == "I ") {
+            computerCount += 1;
+          }
+          // console.log("player: " + playerCount + " computer: " + computerCount);
+        }
+        else {
+          console.log("Input error");
+        }
+      }
+      if (playerCount > computerCount) {
+        console.log("You win the game. " + playerCount + " x " + computerCount);
+      } else {
+        console.log("I win the game. " + computerCount + " x " + playerCount);
+      }
+    }
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection == computerSelection) {
+        return "Tied. Play again.";
+      }
+      if ((playerSelection == "Rock" && computerSelection == "Scissors") || (playerSelection == "Scissors" && computerSelection == "Paper") || (playerSelection == "Paper" && computerSelection == "Rock")) {
+        return "You win. " + playerSelection + " beats " + computerSelection;
+      }
+      else {
+        return "I win. " + computerSelection + " beats " + playerSelection;
+      }
+    }
+    function computerPlay() {
+      const num = Math.floor(Math.random() * 3);
+      switch(num) {
+        case 0:
+          return "Rock";
+        case 1:
+          return "Paper";
+        default:
+          return "Scissors";
+      }
+    }
+    function capitalize (text) {
+      return text[0].toUpperCase() + text.slice(1).toLowerCase();
+    }
+  </script>
+</body>
+</html>
