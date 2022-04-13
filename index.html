@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Rock Paper Scissors</title>
   <meta charset="UTF-8">
 </head>
 <body>
@@ -13,7 +13,7 @@
     function game() {
       let result;
       let playerSelection;
-      while ((playerCount + computerCount) < 5) {
+      while (playerCount < 5 && computerCount < 5) {
         playerSelection = prompt("Choose among rock, paper or scissors: ");
         playerSelection = capitalize(playerSelection);
         if (playerSelection == "Rock" || playerSelection == "Paper" || playerSelection == "Scissors") {
