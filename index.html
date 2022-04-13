@@ -14,7 +14,10 @@
     // Your JavaScript goes here!
     let playerCount = 0;
     let computerCount = 0;
-    game();
+    //game();
+    let playerSelection = document.getElementById('btn-rps').addEventListener('click', function(e) {
+        console.log(e.target.textContent);
+    })
     function game() {
       let result;
       let playerSelection;
