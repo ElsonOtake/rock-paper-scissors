@@ -14,37 +14,27 @@
     // Your JavaScript goes here!
     let playerCount = 0;
     let computerCount = 0;
-    //game();
-    let playerSelection = document.getElementById('btn-rps').addEventListener('click', function(e) {
-        console.log(e.target.textContent);
-    })
-    function game() {
-      let result;
-      let playerSelection;
-      while (playerCount < 5 && computerCount < 5) {
-        playerSelection = prompt("Choose among rock, paper or scissors: ");
-        playerSelection = capitalize(playerSelection);
-        if (playerSelection == "Rock" || playerSelection == "Paper" || playerSelection == "Scissors") {
-          computerSelection = computerPlay();
-          result = playRound(playerSelection, computerSelection);
-          console.log(result);
-          if (result.slice(0, 2) == "Yo") {
-            playerCount += 1;
-          } else if (result.slice(0, 2) == "I ") {
-            computerCount += 1;
-          }
-          // console.log("player: " + playerCount + " computer: " + computerCount);
+    let result;
+    let playerSelection;
+    document.getElementById('btn-rps').addEventListener('click', function(e) {
+        playerSelection = e.target.textContent;
+        computerSelection = computerPlay();
+        result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        if (result.slice(0, 2) == "Yo") {
+        playerCount += 1;
+        } else if (result.slice(0, 2) == "I ") {
+        computerCount += 1;
         }
-        else {
-          console.log("Input error");
+        if (playerCount > 4 || computerCount >4) {
+            if (playerCount > computerCount) {
+                console.log("You win the game. " + playerCount + " x " + computerCount);
+            } else {
+                console.log("I win the game. " + computerCount + " x " + playerCount);
+            }
         }
-      }
-      if (playerCount > computerCount) {
-        console.log("You win the game. " + playerCount + " x " + computerCount);
-      } else {
-        console.log("I win the game. " + computerCount + " x " + playerCount);
-      }
-    }
+    });
+
     function playRound(playerSelection, computerSelection) {
       if (playerSelection == computerSelection) {
         return "Tied. Play again.";
@@ -66,9 +56,6 @@
         default:
           return "Scissors";
       }
-    }
-    function capitalize (text) {
-      return text[0].toUpperCase() + text.slice(1).toLowerCase();
     }
   </script>
 </body>
