@@ -10,17 +10,20 @@
         <button>Paper</button>
         <button>Scissors</button>
     </div>
+    <br>
+    <h3 id="status"></h3>
   <script>
     // Your JavaScript goes here!
     let playerCount = 0;
     let computerCount = 0;
     let result;
     let playerSelection;
+    let status = document.getElementById("status");
     document.getElementById('btn-rps').addEventListener('click', function(e) {
         playerSelection = e.target.textContent;
         computerSelection = computerPlay();
         result = playRound(playerSelection, computerSelection);
-        console.log(result);
+        status.innerText = result;
         if (result.slice(0, 2) == "Yo") {
         playerCount += 1;
         } else if (result.slice(0, 2) == "I ") {
@@ -28,9 +31,9 @@
         }
         if (playerCount > 4 || computerCount >4) {
             if (playerCount > computerCount) {
-                console.log("You win the game. " + playerCount + " x " + computerCount);
+                status.innerText = "You win the game. " + playerCount + " x " + computerCount;
             } else {
-                console.log("I win the game. " + computerCount + " x " + playerCount);
+                status.innerText = "I win the game. " + computerCount + " x " + playerCount;
             }
         }
     });
