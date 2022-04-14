@@ -39,7 +39,8 @@
     let playerSelection;
     let status = document.getElementById("status");
     let score = document.getElementById("score");
-    document.getElementById('btn-rps').addEventListener('click', function(e) {
+    let selection = document.getElementById("btn-rps");
+    selection.addEventListener('click', function(e) {
         playerSelection = e.target.textContent;
         computerSelection = computerPlay();
         result = playRound(playerSelection, computerSelection);
@@ -56,6 +57,9 @@
                 status.innerText = "You win the game.";
             } else {
                 status.innerText = "I win the game.";
+            }
+            for (let i = 0; i < selection.childElementCount; i++) {
+                selection.children[i].disabled = true;
             }
         }
     });
